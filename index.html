@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>week2-3</title>
+	<style type="text/css">
+		body{margin: 0; text-align: center;}
+
+		#chikawa{width: 100px; height: 100px; position: absolute;
+				left: 100px; top: 100px;}
+			
+			.shiftani{width: 100vw; height: 100vh; 
+			background: url(bg.png);
+			background-size: 100vw auto;
+			animation: shift 3s infinite linear; 
+			}
+			@keyframes shift{
+			from{background-position: 0 0;}
+			to{background-position: -50vw 0;}
+			}	
+
+	</style>
+</head>
+<body id="w1">
+	<h1>Click the icon!</h1>
+	<img src="icon.png" id="chikawa">
+		<div id="shiftani" class="shiftani"></div>
+		<input type="range" id="control" step = "0.1" min="0.2" max="5" value="2">
+		<input type="color" id="c1">
+	<script type="text/javascript">
+
+		c1.oninput = function(){
+			w1.style.background = c1.value;
+		}
+
+		control.oninput = function(){
+		shiftani.style.animationDuration = control.value + "s";
+		}
+
+	makeBox();
+	function makeBox(){
+		var chikawa = document.getElementById("chikawa")
+		var a = Math.random()*window.innerWidth;
+		var b = Math.random()*window.innerHeight;
+		chikawa.style.left = a + "px";
+		chikawa.style.top = b + "px";
+		chikawa.onclick = function(){
+			chikawa.parentNode.removeChild(chikawa); 
+			makeBox();
+		}
+		document.body.appendChild(chikawa);
+	}
+	</script>
+</body>
+</html>
